@@ -1,0 +1,29 @@
+gantt
+    title Marketing Board Development Timeline
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+    excludes    weekends
+
+    section Phase 1: Foundation & Calendar
+    System Setup & Architecture       :active, p1_1, 2026-02-03, 3d
+    User Management (Login/Roles)     :p1_2, after p1_1, 2d
+    Master Data CRUD                  :p1_3, 2026-02-10, 2d
+    Shared Calendar Views (P1)        :crit, p1_4, after p1_3, 3d
+
+    section Phase 2: Core Task Mgmt
+    Task Board & List View (P2)       :p2_1, 2026-02-17, 3d
+    Sub-tasks & Checklist             :p2_2, after p2_1, 2d
+    Status Workflow & Approval        :p2_3, 2026-02-24, 5d
+
+    section Phase 3: Integrations
+    Google Calendar Two-Way Sync (P3) :p3_1, 2026-03-02, 3d
+    WhatsApp Notification System (P3) :p3_2, after p3_1, 2d
+
+    section Phase 4: Visualization
+    Gantt Chart & Timeline View (P4)  :p4_1, 2026-03-09, 3d
+    Filters & Dashboard Stats         :p4_2, after p4_1, 2d
+
+    section Phase 5: Finalization
+    Internal Testing & Bug Fixes      :p5_1, 2026-03-16, 2d
+    UAT (User Acceptance Testing)     :p5_2, after p5_1, 2d
+    Deployment & Go Live              :milestone, 2026-03-20, 0d

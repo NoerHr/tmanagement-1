@@ -1,0 +1,194 @@
+{
+  "_meta": {
+    "models": {
+      "events": "Each event represents a scheduled item on the shared calendar, such as a photo shoot, product launch, or editorial plan.",
+      "users": "Team members who can create events and be assigned as PIC (Person In Charge).",
+      "brands": "The brands managed by the marketing team, used for filtering events."
+    },
+    "relationships": [
+      "Each Event belongs to a User (the creator/PIC)",
+      "Each Event is associated with a Brand",
+      "Events can be filtered by type, brand, or PIC"
+    ]
+  },
+  "users": [
+    {
+      "id": "user-001",
+      "name": "Rina Kartika",
+      "email": "rina@company.com",
+      "role": "pic"
+    },
+    {
+      "id": "user-002",
+      "name": "Dian Permata",
+      "email": "dian@company.com",
+      "role": "pic"
+    },
+    {
+      "id": "user-003",
+      "name": "Budi Santoso",
+      "email": "budi@company.com",
+      "role": "pic"
+    },
+    {
+      "id": "user-004",
+      "name": "Maya Anggraini",
+      "email": "maya@company.com",
+      "role": "superior"
+    }
+  ],
+  "brands": [
+    {
+      "id": "brand-001",
+      "name": "Shi by Shireen",
+      "color": "rose"
+    },
+    {
+      "id": "brand-002",
+      "name": "ZS",
+      "color": "blue"
+    },
+    {
+      "id": "brand-003",
+      "name": "ZS Active",
+      "color": "emerald"
+    },
+    {
+      "id": "brand-004",
+      "name": "ZS Signature",
+      "color": "amber"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-001",
+      "title": "Ramadan Collection Photo Shoot",
+      "description": "Studio photo shoot for Ramadan 2024 collection. 15 looks, 2 models. Location: Studio Kirana, Kemang.",
+      "type": "photo_shoot",
+      "date": "2024-02-15",
+      "startTime": "09:00",
+      "endTime": "17:00",
+      "location": "Studio Kirana, Kemang",
+      "brandId": "brand-001",
+      "picId": "user-001",
+      "createdAt": "2024-01-20T10:30:00Z"
+    },
+    {
+      "id": "evt-002",
+      "title": "ZS Active Campaign Launch",
+      "description": "Social media campaign launch for new activewear line. Coordinate with influencer team for simultaneous posting.",
+      "type": "launch",
+      "date": "2024-02-20",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "location": "",
+      "brandId": "brand-003",
+      "picId": "user-002",
+      "createdAt": "2024-01-22T14:15:00Z"
+    },
+    {
+      "id": "evt-003",
+      "title": "Editorial Planning - March Issue",
+      "description": "Monthly editorial planning meeting. Discuss content calendar, themes, and key messaging for March publications.",
+      "type": "editorial",
+      "date": "2024-02-12",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "location": "Meeting Room A",
+      "brandId": "brand-002",
+      "picId": "user-003",
+      "createdAt": "2024-01-25T09:00:00Z"
+    },
+    {
+      "id": "evt-004",
+      "title": "Lebaran Campaign Video Shoot",
+      "description": "Video production for Lebaran greeting campaign. 3 short videos (15s, 30s, 60s versions). Talent: 2 models + voice over.",
+      "type": "video_shoot",
+      "date": "2024-02-18",
+      "startTime": "08:00",
+      "endTime": "18:00",
+      "location": "Outdoor - Taman Mini",
+      "brandId": "brand-001",
+      "picId": "user-001",
+      "createdAt": "2024-01-26T11:45:00Z"
+    },
+    {
+      "id": "evt-005",
+      "title": "ZS Signature Pop-up Event",
+      "description": "Exclusive pop-up store event at Plaza Indonesia. VIP preview for loyal customers.",
+      "type": "event",
+      "date": "2024-02-25",
+      "startTime": "18:00",
+      "endTime": "21:00",
+      "location": "Plaza Indonesia, Level 2",
+      "brandId": "brand-004",
+      "picId": "user-002",
+      "createdAt": "2024-01-28T16:20:00Z"
+    },
+    {
+      "id": "evt-006",
+      "title": "Product Flat Lay Shoot",
+      "description": "Flat lay photography for e-commerce. 30 products, white background.",
+      "type": "photo_shoot",
+      "date": "2024-02-14",
+      "startTime": "10:00",
+      "endTime": "15:00",
+      "location": "In-house Studio",
+      "brandId": "brand-002",
+      "picId": "user-003",
+      "createdAt": "2024-01-29T08:30:00Z"
+    },
+    {
+      "id": "evt-007",
+      "title": "Influencer Collaboration Meeting",
+      "description": "Meeting with influencer management team to discuss Q2 collaboration opportunities.",
+      "type": "event",
+      "date": "2024-02-13",
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "location": "Zoom Call",
+      "brandId": "brand-003",
+      "picId": "user-002",
+      "createdAt": "2024-01-30T10:00:00Z"
+    },
+    {
+      "id": "evt-008",
+      "title": "April Editorial Content Review",
+      "description": "Review and finalize content drafts for April editorial calendar.",
+      "type": "editorial",
+      "date": "2024-02-28",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "location": "Meeting Room B",
+      "brandId": "brand-004",
+      "picId": "user-001",
+      "createdAt": "2024-02-01T09:15:00Z"
+    },
+    {
+      "id": "evt-009",
+      "title": "New Collection Teaser Video",
+      "description": "Short teaser video (15s) for upcoming summer collection. Behind-the-scenes style.",
+      "type": "video_shoot",
+      "date": "2024-02-22",
+      "startTime": "13:00",
+      "endTime": "17:00",
+      "location": "Warehouse Studio",
+      "brandId": "brand-002",
+      "picId": "user-003",
+      "createdAt": "2024-02-02T14:30:00Z"
+    },
+    {
+      "id": "evt-010",
+      "title": "ZS Active Launch Party",
+      "description": "Launch party for ZS Active new collection. 50 guests, influencers, media. Catering and goodie bags arranged.",
+      "type": "launch",
+      "date": "2024-02-27",
+      "startTime": "19:00",
+      "endTime": "22:00",
+      "location": "Rooftop Venue, SCBD",
+      "brandId": "brand-003",
+      "picId": "user-002",
+      "createdAt": "2024-02-03T11:00:00Z"
+    }
+  ]
+}

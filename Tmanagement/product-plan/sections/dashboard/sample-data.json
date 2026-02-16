@@ -1,0 +1,335 @@
+{
+  "_meta": {
+    "models": {
+      "users": "Marketing team members who serve as PICs (Person in Charge) for tasks. Used to show workload distribution.",
+      "brands": "The four brands managed by the marketing team. Used for filtering dashboard data.",
+      "tasks": "Parent tasks representing major work items like campaigns and photo shoots. Each has a status, deadline, progress percentage, and assigned PIC.",
+      "subTasks": "Checklist items within each task. The count of completed sub-tasks determines the parent task's progress.",
+      "events": "Scheduled items like product launches, photo shoots, and campaigns. The nearest launch is shown in the countdown card.",
+      "taskStatistics": "Pre-calculated breakdown of tasks by status for the donut chart visualization.",
+      "workloadDistribution": "Pre-calculated task counts per PIC for the workload bar chart."
+    },
+    "relationships": [
+      "Each Task belongs to a User (as PIC) and a Brand",
+      "Each Task has multiple SubTasks that determine its progress percentage",
+      "Events belong to a Brand and are used for the upcoming launch countdown",
+      "Task Statistics and Workload Distribution are derived from the Tasks data"
+    ]
+  },
+  "users": [
+    {
+      "id": "user-001",
+      "name": "Rina Putri",
+      "role": "PIC",
+      "avatarInitials": "RP",
+      "whatsappNumber": "+62812345678"
+    },
+    {
+      "id": "user-002",
+      "name": "Dimas Pratama",
+      "role": "PIC",
+      "avatarInitials": "DP",
+      "whatsappNumber": "+62823456789"
+    },
+    {
+      "id": "user-003",
+      "name": "Ayu Lestari",
+      "role": "PIC",
+      "avatarInitials": "AL",
+      "whatsappNumber": "+62834567890"
+    },
+    {
+      "id": "user-004",
+      "name": "Budi Santoso",
+      "role": "Superior",
+      "avatarInitials": "BS",
+      "whatsappNumber": "+62845678901"
+    }
+  ],
+  "brands": [
+    { "id": "brand-001", "name": "Shi by Shireen", "color": "rose" },
+    { "id": "brand-002", "name": "ZS", "color": "sky" },
+    { "id": "brand-003", "name": "ZS Active", "color": "emerald" },
+    { "id": "brand-004", "name": "ZS Signature", "color": "violet" }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Ramadan Collection Photo Shoot",
+      "description": "Complete photo shoot for Ramadan 2024 collection including lifestyle and product shots",
+      "status": "in-progress",
+      "progress": 60,
+      "startDate": "2024-02-01",
+      "deadline": "2024-02-20",
+      "picId": "user-001",
+      "picName": "Rina Putri",
+      "brandId": "brand-001",
+      "brandName": "Shi by Shireen",
+      "category": "Photo Shoot",
+      "isOverdue": false,
+      "needsApproval": false
+    },
+    {
+      "id": "task-002",
+      "title": "Lebaran Campaign Landing Page",
+      "description": "Design and develop landing page for Lebaran promotion campaign",
+      "status": "review",
+      "progress": 100,
+      "startDate": "2024-01-20",
+      "deadline": "2024-02-10",
+      "picId": "user-002",
+      "picName": "Dimas Pratama",
+      "brandId": "brand-002",
+      "brandName": "ZS",
+      "category": "Campaign",
+      "isOverdue": false,
+      "needsApproval": true
+    },
+    {
+      "id": "task-003",
+      "title": "Spring Activewear Video Shoot",
+      "description": "Video content for spring activewear line featuring outdoor activities",
+      "status": "to-do",
+      "progress": 0,
+      "startDate": "2024-02-15",
+      "deadline": "2024-02-28",
+      "picId": "user-003",
+      "picName": "Ayu Lestari",
+      "brandId": "brand-003",
+      "brandName": "ZS Active",
+      "category": "Video Shoot",
+      "isOverdue": false,
+      "needsApproval": false
+    },
+    {
+      "id": "task-004",
+      "title": "Valentine's Day Social Media Content",
+      "description": "Create and schedule social media posts for Valentine's Day campaign",
+      "status": "done",
+      "progress": 100,
+      "startDate": "2024-01-25",
+      "deadline": "2024-02-05",
+      "picId": "user-001",
+      "picName": "Rina Putri",
+      "brandId": "brand-004",
+      "brandName": "ZS Signature",
+      "category": "Editorial",
+      "isOverdue": false,
+      "needsApproval": false
+    },
+    {
+      "id": "task-005",
+      "title": "New Product Catalog Design",
+      "description": "Design digital catalog for new spring collection products",
+      "status": "in-progress",
+      "progress": 40,
+      "startDate": "2024-01-28",
+      "deadline": "2024-02-01",
+      "picId": "user-002",
+      "picName": "Dimas Pratama",
+      "brandId": "brand-001",
+      "brandName": "Shi by Shireen",
+      "category": "Editorial",
+      "isOverdue": true,
+      "needsApproval": false
+    },
+    {
+      "id": "task-006",
+      "title": "Influencer Collaboration Brief",
+      "description": "Prepare collaboration brief and outreach for Ramadan influencer partnerships",
+      "status": "review",
+      "progress": 100,
+      "startDate": "2024-01-15",
+      "deadline": "2024-01-30",
+      "picId": "user-003",
+      "picName": "Ayu Lestari",
+      "brandId": "brand-002",
+      "brandName": "ZS",
+      "category": "Campaign",
+      "isOverdue": true,
+      "needsApproval": true
+    },
+    {
+      "id": "task-007",
+      "title": "Warehouse Photoshoot Location Scout",
+      "description": "Find and book warehouse location for urban-style product photography",
+      "status": "approved",
+      "progress": 100,
+      "startDate": "2024-01-10",
+      "deadline": "2024-01-25",
+      "picId": "user-001",
+      "picName": "Rina Putri",
+      "brandId": "brand-003",
+      "brandName": "ZS Active",
+      "category": "Photo Shoot",
+      "isOverdue": false,
+      "needsApproval": false
+    },
+    {
+      "id": "task-008",
+      "title": "March Newsletter Template",
+      "description": "Design email newsletter template for March campaigns and announcements",
+      "status": "to-do",
+      "progress": 0,
+      "startDate": "2024-02-20",
+      "deadline": "2024-03-01",
+      "picId": "user-002",
+      "picName": "Dimas Pratama",
+      "brandId": "brand-004",
+      "brandName": "ZS Signature",
+      "category": "Editorial",
+      "isOverdue": false,
+      "needsApproval": false
+    },
+    {
+      "id": "task-009",
+      "title": "Brand Ambassador Contract Renewal",
+      "description": "Prepare documentation for brand ambassador contract renewal negotiations",
+      "status": "in-progress",
+      "progress": 25,
+      "startDate": "2024-01-22",
+      "deadline": "2024-02-03",
+      "picId": "user-003",
+      "picName": "Ayu Lestari",
+      "brandId": "brand-001",
+      "brandName": "Shi by Shireen",
+      "category": "Other",
+      "isOverdue": true,
+      "needsApproval": false
+    },
+    {
+      "id": "task-010",
+      "title": "Summer Preview Teaser Video",
+      "description": "Create 30-second teaser video for upcoming summer collection announcement",
+      "status": "done",
+      "progress": 100,
+      "startDate": "2024-01-18",
+      "deadline": "2024-02-08",
+      "picId": "user-002",
+      "picName": "Dimas Pratama",
+      "brandId": "brand-002",
+      "brandName": "ZS",
+      "category": "Video Shoot",
+      "isOverdue": false,
+      "needsApproval": false
+    }
+  ],
+  "subTasks": [
+    { "id": "sub-001", "taskId": "task-001", "title": "Finalize photo concept", "completed": true },
+    { "id": "sub-002", "taskId": "task-001", "title": "Create mood board", "completed": true },
+    { "id": "sub-003", "taskId": "task-001", "title": "Book photographer", "completed": true },
+    { "id": "sub-004", "taskId": "task-001", "title": "Conduct photo shoot", "completed": false },
+    { "id": "sub-005", "taskId": "task-001", "title": "Edit and retouch photos", "completed": false },
+    { "id": "sub-006", "taskId": "task-005", "title": "Gather product information", "completed": true },
+    { "id": "sub-007", "taskId": "task-005", "title": "Design catalog layout", "completed": true },
+    { "id": "sub-008", "taskId": "task-005", "title": "Add product photos", "completed": false },
+    { "id": "sub-009", "taskId": "task-005", "title": "Proofread copy", "completed": false },
+    { "id": "sub-010", "taskId": "task-005", "title": "Final export", "completed": false },
+    { "id": "sub-011", "taskId": "task-009", "title": "Review current contract terms", "completed": true },
+    { "id": "sub-012", "taskId": "task-009", "title": "Prepare renewal proposal", "completed": false },
+    { "id": "sub-013", "taskId": "task-009", "title": "Legal review", "completed": false },
+    { "id": "sub-014", "taskId": "task-009", "title": "Schedule negotiation meeting", "completed": false }
+  ],
+  "events": [
+    {
+      "id": "event-001",
+      "title": "Ramadan Collection Launch",
+      "type": "launch",
+      "date": "2024-02-25",
+      "time": "10:00",
+      "location": "Grand Indonesia Mall",
+      "brandId": "brand-001",
+      "brandName": "Shi by Shireen",
+      "description": "Official launch event for Ramadan 2024 collection with press coverage and influencer attendance"
+    },
+    {
+      "id": "event-002",
+      "title": "Spring Activewear Photo Shoot",
+      "type": "photo-shoot",
+      "date": "2024-02-18",
+      "time": "08:00",
+      "location": "Menteng Park",
+      "brandId": "brand-003",
+      "brandName": "ZS Active",
+      "description": "Outdoor lifestyle photo shoot for spring activewear collection"
+    },
+    {
+      "id": "event-003",
+      "title": "ZS Signature Summer Preview",
+      "type": "launch",
+      "date": "2024-03-10",
+      "time": "14:00",
+      "location": "Pacific Place Jakarta",
+      "brandId": "brand-004",
+      "brandName": "ZS Signature",
+      "description": "Exclusive preview event for VIP customers and media"
+    }
+  ],
+  "taskStatistics": {
+    "toDo": 2,
+    "inProgress": 3,
+    "done": 2,
+    "review": 2,
+    "approved": 1,
+    "total": 10
+  },
+  "workloadDistribution": [
+    { "picId": "user-001", "picName": "Rina Putri", "taskCount": 3, "overdueCount": 0 },
+    { "picId": "user-002", "picName": "Dimas Pratama", "taskCount": 4, "overdueCount": 1 },
+    { "picId": "user-003", "picName": "Ayu Lestari", "taskCount": 3, "overdueCount": 2 }
+  ],
+  "upcomingLaunch": {
+    "id": "event-001",
+    "title": "Ramadan Collection Launch",
+    "date": "2024-02-25",
+    "brandName": "Shi by Shireen",
+    "daysUntil": 20
+  },
+  "attentionItems": [
+    {
+      "id": "task-005",
+      "title": "New Product Catalog Design",
+      "type": "overdue",
+      "deadline": "2024-02-01",
+      "picName": "Dimas Pratama",
+      "brandName": "Shi by Shireen",
+      "daysOverdue": 4
+    },
+    {
+      "id": "task-006",
+      "title": "Influencer Collaboration Brief",
+      "type": "overdue",
+      "deadline": "2024-01-30",
+      "picName": "Ayu Lestari",
+      "brandName": "ZS",
+      "daysOverdue": 6
+    },
+    {
+      "id": "task-009",
+      "title": "Brand Ambassador Contract Renewal",
+      "type": "overdue",
+      "deadline": "2024-02-03",
+      "picName": "Ayu Lestari",
+      "brandName": "Shi by Shireen",
+      "daysOverdue": 2
+    },
+    {
+      "id": "task-002",
+      "title": "Lebaran Campaign Landing Page",
+      "type": "needs-approval",
+      "deadline": "2024-02-10",
+      "picName": "Dimas Pratama",
+      "brandName": "ZS",
+      "waitingDays": 3
+    },
+    {
+      "id": "task-006",
+      "title": "Influencer Collaboration Brief",
+      "type": "needs-approval",
+      "deadline": "2024-01-30",
+      "picName": "Ayu Lestari",
+      "brandName": "ZS",
+      "waitingDays": 5
+    }
+  ]
+}

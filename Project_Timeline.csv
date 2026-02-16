@@ -1,0 +1,16 @@
+Phase,Week,Task Name,Start Date,End Date,Duration (Days),Priority,Deliverable
+Phase 1: Foundation & Calendar,Week 1,System Setup & Architecture (Repo, DB, Vite),2026-02-03,2026-02-05,3,High,System Ready
+Phase 1: Foundation & Calendar,Week 1,User Management (Login, Roles),2026-02-06,2026-02-07,2,High,Auth Module
+Phase 1: Foundation & Calendar,Week 2,Master Data CRUD (Brands, Categories),2026-02-10,2026-02-11,2,High,Master Data API
+Phase 1: Foundation & Calendar,Week 2,Shared Calendar Views (Month/Week/Day),2026-02-12,2026-02-14,3,High (P1),Calendar UI
+Phase 2: Task Management,Week 3,Task Board & List View,2026-02-17,2026-02-19,3,High (P2),Task Board
+Phase 2: Task Management,Week 3,Task CRUD & Attributes,2026-02-20,2026-02-21,2,High (P2),Task Details
+Phase 2: Task Management,Week 4,Sub-tasks & Checklist Implementation,2026-02-24,2026-02-25,2,High (P2),Sub-tasks
+Phase 2: Task Management,Week 4,Status Workflow & Approval Logic,2026-02-26,2026-02-28,3,High,Approval Flow
+Phase 3: Integrations,Week 5,Google Calendar Sync Integration,2026-03-02,2026-03-04,3,High (P3),GCal Sync
+Phase 3: Integrations,Week 5,WhatsApp Notification System,2026-03-05,2026-03-06,2,High (P3),WA Alerts
+Phase 4: Optimization,Week 6,Gantt Chart & Timeline View,2026-03-09,2026-03-11,3,Medium (P4),Timeline View
+Phase 4: Optimization,Week 6,Filtering & Dashboard,2026-03-12,2026-03-13,2,Low (P5),Dashboard
+Phase 5: Finalization,Week 7,Internal Testing & Bug Fixing,2026-03-16,2026-03-17,2,High,Stable Build
+Phase 5: Finalization,Week 7,UAT (User Acceptance Testing),2026-03-18,2026-03-19,2,High,UAT Sign-off
+Phase 5: Finalization,Week 7,Deployment & Go Live,2026-03-20,2026-03-20,1,High,Live System

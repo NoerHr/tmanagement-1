@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Digital: Marketing Board (TeamPulse)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --navy: #1E2141;
+            --gold: #D4AF37;
+            --text-dark: #334155;
+            --emerald: #11CAA0;
+            --rose: #D32F2F;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--navy);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+
+        .tab-active {
+            border-bottom: 4px solid var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .scroll-mt {
+            scroll-margin-top: 80px;
+        }
+
+        /* Utility classes for icon simulation since NO SVG is allowed */
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background-color: #f1f5f9;
+            color: var(--navy);
+            border-radius: 8px;
+            font-size: 24px;
+        }
+
+        .workflow-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+    <!-- Chosen Palette: Elegant Executive (Cream Background, Deep Indigo Text, Gold Accents) -->
+    <!-- Application Structure Plan: 
+         1. Hero/Visi: Identitas proyek dan brand yang dikelola.
+         2. Analisis Diagnosis: Visualisasi Pain Points dan data risiko (50% delay).
+         3. Peta Stakeholder: Matriks peran user dalam sistem.
+         4. Dashboard Solusi: Navigasi tab untuk Shared Calendar, Task Board, dan WhatsApp Automation.
+         5. Alur Kerja & Kontrol Kualitas: Visualisasi workflow status.
+         Mengapa struktur ini? Agar user memahami 'Mengapa' (masalah) sebelum melihat 'Bagaimana' (fitur) dan 'Apa Hasilnya' (dampak).
+    -->
+    <!-- Visualization & Content Choices:
+         - Bar Chart (Horizontal): Membandingkan kondisi Manual vs Sistem pada isu krusial.
+         - Doughnut Chart: Distribusi risiko keterlambatan proyek.
+         - Interactive Tabs: Menjelaskan 3 pilar solusi teknis tanpa memadati layar.
+         - Status Matrix: Menggunakan Grid untuk alur persetujuan.
+         - NO SVG/Mermaid: Ikon menggunakan karakter Unicode dan styling CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-bold text-indigo-900 border-l-4 border-gold pl-3">TeamPulse</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-wider">
+                    <a href="#diagnosis" class="hover:text-gold transition">Diagnosis</a>
+                    <a href="#stakeholder" class="hover:text-gold transition">Stakeholder</a>
+                    <a href="#solusi" class="hover:text-gold transition">Solusi</a>
+                    <a href="#workflow" class="hover:text-gold transition">Alur Kerja</a>
+                </div>
+                <button class="bg-navy text-white px-6 py-2 rounded font-bold hover:bg-slate-800 transition" style="background-color: #1E2141;">
+                    Dapatkan Akses
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <header class="pt-32 pb-20 px-4 text-center bg-white border-b border-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Marketing Board: Transforming Team Coordination</h1>
+            <p class="text-xl text-slate-500 mb-8 italic">Membangun "Single Source of Truth" untuk Efisiensi 4 Brand: Shi by Shireen, ZS, ZS Active, & ZS Signature.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-4 py-2 bg-slate-100 rounded-full text-sm font-bold">📅 Sentralisasi Jadwal</span>
+                <span class="px-4 py-2 bg-slate-100 rounded-full text-sm font-bold">✅ Monitoring Real-time</span>
+                <span class="px-4 py-2 bg-slate-100 rounded-full text-sm font-bold">📲 Notifikasi WhatsApp</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: Diagnosis & Pain Points -->
+    <section id="diagnosis" class="py-20 px-4 scroll-mt">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Diagnosis Kondisi Saat Ini</h2>
+                <p class="text-lg text-slate-500">Validasi Permasalahan: Apakah tim Anda merasakan hal ini setiap hari?</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="p-6 bg-white border-l-8 border-rose card-shadow rounded-r-xl" style="border-left-color: #D32F2F;">
+                        <h3 class="text-xl font-bold mb-2">1. "Blind Spot" Informasi (The WIP Gap)</h3>
+                        <p class="text-slate-600">Koordinasi bergantung pada rapat WIP mingguan. Kendala di antara rapat sering tidak terlihat, berakibat pada respon yang terlambat.</p>
+                    </div>
+                    <div class="p-6 bg-white border-l-8 border-gold card-shadow rounded-r-xl" style="border-left-color: #D4AF37;">
+                        <h3 class="text-xl font-bold mb-2">2. Isu "Key Person Dependency"</h3>
+                        <p class="text-slate-600">Status tugas tersimpan di catatan pribadi PIC. Saat PIC absen, tim kesulitan melacak progres terakhir, menghambat backup tugas urgent.</p>
+                    </div>
+                    <div class="p-6 bg-white border-l-8 border-navy card-shadow rounded-r-xl" style="border-left-color: #1E2141;">
+                        <h3 class="text-xl font-bold mb-2">3. Konflik Sumber Daya (Resource Clash)</h3>
+                        <p class="text-slate-600">Photoshoot/Event dijadwalkan secara manual tanpa sistem peringatan. Dampaknya: Double booking studio atau fotografer yang mengganggu ritme kerja.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white p-8 rounded-3xl card-shadow border border-slate-100">
+                        <h3 class="text-center mb-6 font-bold text-sm uppercase tracking-widest text-slate-400">Analisis Dampak Produktivitas</h3>
+                        <div class="chart-container">
+                            <canvas id="painPointsChart"></canvas>
+                        </div>
+                        <p class="mt-6 text-sm text-center italic text-slate-500">Estimasi 50% risiko delay proyek akibat inefisiensi koordinasi manual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Stakeholders -->
+    <section id="stakeholder" class="py-20 px-4 bg-slate-900 text-white scroll-mt">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Matriks Peran Pengguna</h2>
+                <p class="text-lg text-slate-400">Pembagian tanggung jawab untuk menjaga kerapian data dan alur kerja.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 border border-slate-700 rounded-3xl bg-slate-800">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box" style="background-color: #334155; color: #fff;">👤</div>
+                        <h3 class="text-2xl font-bold text-white">PIC (Executor)</h3>
+                    </div>
+                    <p class="text-slate-300 mb-6">Specialist, Designer, Video Editor, Photographer.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <span class="text-gold">●</span> Membuat & Mengelola Task
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-gold">●</span> Update Checklist Sub-task
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-gold">●</span> Mengubah Status Progres
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-8 border border-gold rounded-3xl bg-slate-800 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 bg-gold text-navy font-bold text-xs uppercase">Decision Maker</div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box" style="background-color: #D4AF37; color: #1E2141;">👑</div>
+                        <h3 class="text-2xl font-bold text-white">Superior (Approver)</h3>
+                    </div>
+                    <p class="text-slate-300 mb-6">Marketing Manager (Ibu Sally) & Team Leaders.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <span class="text-gold">●</span> Monitoring Dashboard Real-time
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-gold">●</span> Verifikasi Hasil Kerja (Review)
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-gold">●</span> Memberikan Approval / Feedback
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Interactive Solutions -->
+    <section id="solusi" class="py-20 px-4 scroll-mt">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Solusi Utama: Marketing Board</h2>
+                <p class="text-lg text-slate-500">Teknologi yang dirancang untuk menjawab penderitaan operasional Anda.</p>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="flex justify-center mb-12 border-b border-slate-200">
+                <button onclick="showTab('calendar')" id="btn-calendar" class="px-8 py-4 text-sm font-bold uppercase tracking-widest transition tab-active">Shared Calendar</button>
+                <button onclick="showTab('task')" id="btn-task" class="px-8 py-4 text-sm font-bold uppercase tracking-widest transition text-slate-400">Task Board</button>
+                <button onclick="showTab('automation')" id="btn-automation" class="px-8 py-4 text-sm font-bold uppercase tracking-widest transition text-slate-400">Automation</button>
+            </div>
+
+            <!-- Tab Content: Calendar -->
+            <div id="tab-calendar" class="tab-content block">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">1. Kalender Terintegrasi & Anti-Bentrok</h3>
+                        <p class="text-slate-600 mb-6 italic">"Menghilangkan drama perebutan studio dan fotografer."</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-rose-600 font-bold">🚨 Conflict Warning:</span>
+                                <span>Sistem otomatis menolak atau memberi peringatan jika jadwal resource tumpang tindih.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-600 font-bold">📱 Mobile Sync:</span>
+                                <span>Sinkronisasi otomatis ke Google Calendar di HP masing-masing PIC secara real-time.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-navy font-bold">🔍 Multi-Brand View:</span>
+                                <span>View gabungan 4 brand untuk melihat gambaran besar kampanye marketing.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl card-shadow border border-slate-100">
+                        <!-- Simulated Calendar UI -->
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center pb-4 border-b">
+                                <span class="font-bold">Februari 2026</span>
+                                <span class="text-sm text-slate-400">Semua Brand</span>
+                            </div>
+                            <div class="grid grid-cols-7 gap-2 text-center text-[10px] font-bold text-slate-400 mb-2">
+                                <span>SEN</span><span>SEL</span><span>RAB</span><span>KAM</span><span>JUM</span><span>SAB</span><span>MIN</span>
+                            </div>
+                            <div class="grid grid-cols-7 gap-2">
+                                <div class="h-12 border rounded bg-slate-50"></div>
+                                <div class="h-12 border rounded bg-slate-50"></div>
+                                <div class="h-12 border rounded bg-slate-50"></div>
+                                <div class="h-12 border-2 border-gold rounded flex items-center justify-center font-bold text-navy bg-white">4</div>
+                                <div class="h-12 border rounded bg-slate-50"></div>
+                                <div class="h-12 border rounded bg-slate-50"></div>
+                                <div class="h-12 border rounded bg-slate-50"></div>
+                            </div>
+                            <div class="mt-4 p-4 bg-rose-50 border border-rose-100 rounded-xl text-xs">
+                                <p class="font-bold text-rose-800 mb-1">⚠️ Konflik Terdeteksi!</p>
+                                <p class="text-rose-700">Studio A telah dibooking oleh Brand ZS (09:00 - 12:00). Pilih waktu lain.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Task Board -->
+            <div id="tab-task" class="tab-content hidden">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">2. Task Board & Monitoring Transparan</h3>
+                        <p class="text-slate-600 mb-6 italic">"Dari 'Saya harus tanya Si A' menjadi 'Saya bisa lihat di Board'."</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-navy font-bold">📋 Sub-task Checklist:</span>
+                                <span>Breakdown detail tugas teknis (Booking Studio, Cari Model, Moodboard).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-emerald-600 font-bold">🔓 No Person Dependency:</span>
+                                <span>Jika PIC absen, tim lain bisa melihat checklist mana yang belum dicentang dan melanjutkan.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-gold font-bold">📈 Progress Visual:</span>
+                                <span>Monitor persentase pengerjaan project secara instan tanpa menunggu rapat.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-100 p-8 rounded-3xl border-2 border-dashed border-slate-300">
+                        <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-bold">Foto Koleksi Ramadan</h4>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold rounded uppercase">In Progress</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full w-2/3"></div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-3 text-xs text-slate-400">
+                                    <span class="text-emerald-500">✔</span> Booking Studio (Done)
+                                </div>
+                                <div class="flex items-center gap-3 text-xs text-slate-400">
+                                    <span class="text-emerald-500">✔</span> Cari Model (Done)
+                                </div>
+                                <div class="flex items-center gap-3 text-xs text-slate-800">
+                                    <span class="inline-block w-4 h-4 border rounded mr-1"></span> Siapkan Moodboard (Pending)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Automation -->
+            <div id="tab-automation" class="tab-content hidden">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">3. Sistem yang "Proaktif" via WhatsApp</h3>
+                        <p class="text-slate-600 mb-6 italic">"Sistem yang mengejar user, bukan sebaliknya."</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-indigo-600 font-bold">📲 H-1 Reminder:</span>
+                                <span>WA otomatis ke PIC: "Besok deadline upload konten Koleksi ZS".</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-indigo-600 font-bold">📣 H-3 Event Alert:</span>
+                                <span>WA reminder persiapan logistik/transport untuk event besar.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-indigo-600 font-bold">🔔 Approval Alert:</span>
+                                <span>WA instan ke Leader saat ada tugas yang butuh review & persetujuan.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-xs bg-white rounded-3xl border-8 border-slate-800 shadow-2xl overflow-hidden aspect-[9/18]">
+                            <div class="bg-slate-800 p-4 pt-8 text-white flex justify-between items-center">
+                                <span class="text-[10px]">14:20</span>
+                                <div class="w-12 h-4 bg-black rounded-full"></div>
+                                <span class="text-[10px]">98%</span>
+                            </div>
+                            <div class="p-4 space-y-4">
+                                <div class="bg-[#e7fedc] p-3 rounded-xl shadow-sm border border-slate-200">
+                                    <p class="text-[10px] font-bold text-emerald-800 mb-1">TEAM PULSE BOT</p>
+                                    <p class="text-[11px] text-slate-700">Halo **Social Media Specialist**! 👋<br><br>Ini reminder otomatis. Besok adalah deadline **Posting Teaser Koleksi ZS Active**. Pastikan aset sudah di-approve Leader!</p>
+                                    <p class="text-[8px] text-right text-slate-400 mt-1">14:15</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200">
+                                    <p class="text-[10px] font-bold text-indigo-800 mb-1">TEAM PULSE BOT</p>
+                                    <p class="text-[11px] text-slate-700">Halo **Bu Sally**! 👋<br><br>Ada 1 tugas baru butuh approval: **Moodboard Ramadan (Brand Shi)**. Klik link di bawah untuk review.</p>
+                                    <p class="text-[8px] text-right text-slate-400 mt-1">14:18</p>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 w-full h-16 bg-white border-t flex items-center px-4">
+                                <div class="flex-grow bg-slate-100 h-8 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Workflow -->
+    <section id="workflow" class="py-20 px-4 bg-slate-50 scroll-mt">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Standardized Workflow (Quality Gate)</h2>
+                <p class="text-lg text-slate-500">Alur kerja yang disiplin untuk memastikan tidak ada konten tayang tanpa persetujuan.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center items-center gap-6">
+                <div class="text-center w-40 p-4 bg-white rounded-xl shadow-sm border-b-4 border-slate-300">
+                    <span class="workflow-dot bg-slate-400 mb-2"></span>
+                    <h4 class="font-bold text-sm">TO DO</h4>
+                </div>
+                <span class="text-slate-300 hidden md:block">➔</span>
+                <div class="text-center w-40 p-4 bg-white rounded-xl shadow-sm border-b-4 border-blue-400">
+                    <span class="workflow-dot bg-blue-400 mb-2"></span>
+                    <h4 class="font-bold text-sm">IN PROGRESS</h4>
+                </div>
+                <span class="text-slate-300 hidden md:block">➔</span>
+                <div class="text-center w-40 p-4 bg-white rounded-xl shadow-sm border-b-4 border-amber-400">
+                    <span class="workflow-dot bg-amber-400 mb-2"></span>
+                    <h4 class="font-bold text-sm">IN REVIEW</h4>
+                </div>
+                <span class="text-slate-300 hidden md:block">➔</span>
+                <div class="text-center w-40 p-4 bg-navy text-white rounded-xl shadow-sm border-b-4 border-emerald-400" style="background-color: #1E2141;">
+                    <span class="workflow-dot bg-emerald-400 mb-2"></span>
+                    <h4 class="font-bold text-sm">APPROVED</h4>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white p-10 rounded-3xl card-shadow border border-slate-100 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 text-center">Outcome: Transformasi Nyata</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <p class="text-sm font-bold text-rose-600 uppercase">Kondisi Manual (Old)</p>
+                        <p class="text-slate-500 line-through">"Saya harus tanya Si A pekerjaan sudah sampai mana."</p>
+                        <p class="text-slate-500 line-through">"Waduh, dua brand booking studio di hari yang sama!"</p>
+                        <p class="text-slate-500 line-through">"Lupa ada deadline upload hari ini."</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-sm font-bold text-emerald-600 uppercase">Dengan TeamPulse (New)</p>
+                        <p class="text-slate-900 font-bold">"Saya bisa lihat di Board pekerjaan Si A sudah 80%."</p>
+                        <p class="text-slate-900 font-bold">"Sistem menolak input jadwal karena studio sudah penuh."</p>
+                        <p class="text-slate-900 font-bold">"WhatsApp Bot mengingatkan saya deadline H-1."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4">Mulai Sinkronkan Detak Jantung Tim Anda</h2>
+            <p class="text-slate-500 mb-8">Pertanyaan lebih lanjut? Tim IT siap berdiskusi.</p>
+            <div class="text-sm font-bold text-navy mb-4">IT DEVELOPMENT TEAM | 2026</div>
+            <p class="text-xs text-slate-400">© 2026 TeamPulse Interactive Brochure. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Tab Switching Logic ---
+        function showTab(tabName) {
+            // Hide all tabs
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+            contents.forEach(el => el.classList.remove('block'));
+
+            // Show target tab
+            const target = document.getElementById('tab-' + tabName);
+            target.classList.remove('hidden');
+            target.classList.add('block');
+
+            // Handle button states
+            const buttons = document.querySelectorAll('button[id^="btn-"]');
+            buttons.forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabName);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('text-slate-400');
+        }
+
+        // --- Chart Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctxPain = document.getElementById('painPointsChart').getContext('2d');
+            
+            new Chart(ctxPain, {
+                type: 'bar',
+                data: {
+                    labels: ['Visibilitas Progres', 'Konflik Jadwal', 'Respon Masalah'],
+                    datasets: [
+                        {
+                            label: 'Kondisi Manual (Saat Ini)',
+                            data: [25, 60, 30],
+                            backgroundColor: '#94A3B8',
+                            borderRadius: 6,
+                        },
+                        {
+                            label: 'Target Sistem Baru',
+                            data: [100, 5, 95],
+                            backgroundColor: '#1E2141',
+                            borderRadius: 6,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 11, family: 'DM Sans' }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1E2141',
+                            padding: 12,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) { return value + "%" },
+                                font: { size: 10 }
+                            },
+                            grid: { display: false }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { size: 11, weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+        });
+    </script>   
+</body>
+</html>

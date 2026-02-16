@@ -1,0 +1,25 @@
+Phase,Week,Task ID,Task Name,Assigned Role,Start Date,End Date,Duration (Days),Priority,Deliverable
+Phase 1: Foundation,Week 1,T1.1,Initialize Project Repository & Vite/React Setup,Frontend Dev,2026-02-03,2026-02-03,1,High,Repo & Scaffold
+Phase 1: Foundation,Week 1,T1.2,Database Schema Design (ERD) & Migration Setup,Backend Dev,2026-02-03,2026-02-04,2,High,DB Schema
+Phase 1: Foundation,Week 1,T1.3,Authentication API (Login/Register/JWT),Backend Dev,2026-02-04,2026-02-06,3,High,Auth API
+Phase 1: Foundation,Week 1,T1.4,Frontend Login Page & Role State Management,Frontend Dev,2026-02-05,2026-02-07,3,High,Login UI
+Phase 1: Foundation,Week 2,T1.5,Master Data API (Brands, Categories, Status),Backend Dev,2026-02-10,2026-02-11,2,High,Master Data Endpoints
+Phase 1: Foundation,Week 2,T1.6,Calendar Event CRUD API,Backend Dev,2026-02-11,2026-02-13,3,High,Calendar API
+Phase 1: Foundation,Week 2,T1.7,Interactive Calendar UI (Month/Week/Day Views),Frontend Dev,2026-02-10,2026-02-14,5,High,Calendar Component
+Phase 2: Core Task Mgmt,Week 3,T2.1,Task Management API (Head/Parent Tasks),Backend Dev,2026-02-17,2026-02-18,2,High,Task API
+Phase 2: Core Task Mgmt,Week 3,T2.2,Sub-task/Checklist Database & API Logic,Backend Dev,2026-02-18,2026-02-19,2,High,Subtask API
+Phase 2: Core Task Mgmt,Week 3,T2.3,Task Board / List View UI Implementation,Frontend Dev,2026-02-17,2026-02-20,4,High,Task Board UI
+Phase 2: Core Task Mgmt,Week 3,T2.4,Task Detail Modal & Edit Form,Frontend Dev,2026-02-20,2026-02-21,2,High,Task Forms
+Phase 2: Core Task Mgmt,Week 4,T2.5,Status Transition Logic & Validation,Backend Dev,2026-02-24,2026-02-25,2,High,Workflow Logic
+Phase 2: Core Task Mgmt,Week 4,T2.6,Role-Based Access Control (RBAC) for Approval,Fullstack,2026-02-25,2026-02-26,2,High,Security Rules
+Phase 2: Core Task Mgmt,Week 4,T2.7,Progress Bar Visualization logic,Frontend Dev,2026-02-27,2026-02-28,2,Medium,Visual Progress
+Phase 3: Integrations,Week 5,T3.1,Google Calendar API OAuth Setup,Backend Dev,2026-03-02,2026-03-03,2,Medium,GCal Auth
+Phase 3: Integrations,Week 5,T3.2,Sync Service (App -> GCal),Backend Dev,2026-03-03,2026-03-05,3,Medium,Sync Worker
+Phase 3: Integrations,Week 5,T3.3,WhatsApp Gateway Integration (API Setup),Backend Dev,2026-03-05,2026-03-06,2,Medium,WA Connection
+Phase 3: Integrations,Week 5,T3.4,Notification Scheduler (Deadline Reminders),Backend Dev,2026-03-06,2026-03-07,2,Medium,Job Scheduler
+Phase 4: Optimization,Week 6,T4.1,Gantt Chart Component Implementation,Frontend Dev,2026-03-09,2026-03-11,3,Low,Gantt View
+Phase 4: Optimization,Week 6,T4.2,Advanced Filter Logic (Brand, PIC, Status),Frontend Dev,2026-03-11,2026-03-12,2,Low,Filter System
+Phase 4: Optimization,Week 6,T4.3,Dashboard Statistics Widgets,Frontend Dev,2026-03-12,2026-03-13,2,Low,Dashboard
+Phase 5: Finalization,Week 7,T5.1,End-to-End Testing & Bug Fixes,QA / All,2026-03-16,2026-03-17,2,High,Stable RC
+Phase 5: Finalization,Week 7,T5.2,User Acceptance Testing (UAT),Stakeholders,2026-03-18,2026-03-19,2,High,Signed-off Product
+Phase 5: Finalization,Week 7,T5.3,Production Deployment & Handover,DevOps,2026-03-20,2026-03-20,1,High,Live URL

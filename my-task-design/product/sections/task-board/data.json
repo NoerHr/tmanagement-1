@@ -1,0 +1,261 @@
+{
+  "_meta": {
+    "models": {
+      "users": "Team members who use the system. PICs create and manage tasks, while Superiors review and approve completed work.",
+      "tasks": "Parent tasks representing major work items like photo shoots or campaigns. Each task tracks progress through a status workflow and contains sub-tasks.",
+      "subTasks": "Checklist items within a parent task. Completing sub-tasks automatically updates the parent task's progress percentage.",
+      "brands": "The fashion brands managed by the marketing team. Tasks can be filtered by brand.",
+      "categories": "Types of marketing activities used to categorize and filter tasks.",
+      "taskTemplates": "Pre-defined sub-task lists for common task types to speed up task creation."
+    },
+    "relationships": [
+      "Each Task belongs to one User (the PIC responsible for it)",
+      "Each Task contains multiple SubTasks (the checklist items)",
+      "Each Task is associated with one Brand and one Category",
+      "SubTasks can optionally have a different PIC than the parent Task",
+      "Task progress is calculated from the percentage of completed SubTasks"
+    ]
+  },
+  "users": [
+    {
+      "id": "user-001",
+      "name": "Rina Kusuma",
+      "email": "rina.kusuma@company.com",
+      "phone": "+62812345678",
+      "role": "pic",
+      "avatar": "RK"
+    },
+    {
+      "id": "user-002",
+      "name": "Dimas Prasetyo",
+      "email": "dimas.prasetyo@company.com",
+      "phone": "+62812345679",
+      "role": "pic",
+      "avatar": "DP"
+    },
+    {
+      "id": "user-003",
+      "name": "Siti Nurhaliza",
+      "email": "siti.nurhaliza@company.com",
+      "phone": "+62812345680",
+      "role": "pic",
+      "avatar": "SN"
+    },
+    {
+      "id": "user-004",
+      "name": "Budi Santoso",
+      "email": "budi.santoso@company.com",
+      "phone": "+62812345681",
+      "role": "superior",
+      "avatar": "BS"
+    }
+  ],
+  "brands": [
+    { "id": "brand-001", "name": "Shi by Shireen", "color": "pink" },
+    { "id": "brand-002", "name": "ZS", "color": "blue" },
+    { "id": "brand-003", "name": "ZS Active", "color": "green" },
+    { "id": "brand-004", "name": "ZS Signature", "color": "purple" }
+  ],
+  "categories": [
+    { "id": "cat-001", "name": "Photo Shoot" },
+    { "id": "cat-002", "name": "Video Shoot" },
+    { "id": "cat-003", "name": "Event" },
+    { "id": "cat-004", "name": "Campaign" },
+    { "id": "cat-005", "name": "Editorial" },
+    { "id": "cat-006", "name": "Other" }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Foto Koleksi Ramadan 2025",
+      "description": "Photo shoot untuk koleksi gamis dan hijab spesial Ramadan. Target 20 looks untuk katalog dan social media.",
+      "picId": "user-001",
+      "brandId": "brand-001",
+      "categoryId": "cat-001",
+      "status": "in-progress",
+      "startDate": "2025-01-15",
+      "deadline": "2025-02-28",
+      "crossDeptNotes": "Koordinasi dengan tim produksi untuk sample ready H-7 sebelum shoot.",
+      "createdAt": "2025-01-10T08:00:00Z",
+      "updatedAt": "2025-01-20T14:30:00Z",
+      "subTasks": [
+        { "id": "sub-001", "title": "Konsep foto & creative direction", "completed": true, "picId": "user-001", "dueDate": "2025-01-18" },
+        { "id": "sub-002", "title": "Mood board & referensi visual", "completed": true, "picId": "user-001", "dueDate": "2025-01-20" },
+        { "id": "sub-003", "title": "Cari studio/lokasi", "completed": true, "picId": "user-002", "dueDate": "2025-01-25" },
+        { "id": "sub-004", "title": "Casting model (3 orang)", "completed": true, "picId": "user-001", "dueDate": "2025-01-28" },
+        { "id": "sub-005", "title": "Booking decorator & props", "completed": false, "picId": "user-002", "dueDate": "2025-02-01" },
+        { "id": "sub-006", "title": "Booking photographer & videographer", "completed": false, "picId": "user-001", "dueDate": "2025-02-03" },
+        { "id": "sub-007", "title": "RAB & approval budget", "completed": false, "picId": "user-001", "dueDate": "2025-02-05" },
+        { "id": "sub-008", "title": "Crew call & rundown", "completed": false, "picId": "user-001", "dueDate": "2025-02-10" },
+        { "id": "sub-009", "title": "Eksekusi photo shoot", "completed": false, "picId": "user-001", "dueDate": "2025-02-15" },
+        { "id": "sub-010", "title": "Seleksi & editing foto", "completed": false, "picId": "user-003", "dueDate": "2025-02-22" },
+        { "id": "sub-011", "title": "Final delivery ke tim digital", "completed": false, "picId": "user-001", "dueDate": "2025-02-28" }
+      ]
+    },
+    {
+      "id": "task-002",
+      "title": "Video Campaign Lebaran ZS",
+      "description": "Video campaign 60 detik untuk TV commercial dan digital ads. Tema: kebersamaan keluarga saat Lebaran.",
+      "picId": "user-002",
+      "brandId": "brand-002",
+      "categoryId": "cat-002",
+      "status": "review",
+      "startDate": "2025-01-05",
+      "deadline": "2025-02-15",
+      "crossDeptNotes": "Tim digital butuh video final H-14 sebelum Lebaran untuk scheduling ads.",
+      "createdAt": "2025-01-03T09:00:00Z",
+      "updatedAt": "2025-01-28T16:45:00Z",
+      "subTasks": [
+        { "id": "sub-012", "title": "Script & storyboard", "completed": true, "picId": "user-002", "dueDate": "2025-01-10" },
+        { "id": "sub-013", "title": "Casting talent (keluarga)", "completed": true, "picId": "user-002", "dueDate": "2025-01-15" },
+        { "id": "sub-014", "title": "Location scouting", "completed": true, "picId": "user-002", "dueDate": "2025-01-18" },
+        { "id": "sub-015", "title": "Production house briefing", "completed": true, "picId": "user-002", "dueDate": "2025-01-20" },
+        { "id": "sub-016", "title": "Shooting day 1 - indoor scenes", "completed": true, "picId": "user-002", "dueDate": "2025-01-23" },
+        { "id": "sub-017", "title": "Shooting day 2 - outdoor scenes", "completed": true, "picId": "user-002", "dueDate": "2025-01-24" },
+        { "id": "sub-018", "title": "Rough cut review", "completed": true, "picId": "user-002", "dueDate": "2025-01-27" },
+        { "id": "sub-019", "title": "Final editing & color grading", "completed": true, "picId": "user-002", "dueDate": "2025-02-05" }
+      ]
+    },
+    {
+      "id": "task-003",
+      "title": "Fashion Show ZS Signature - Jakarta Fashion Week",
+      "description": "Partisipasi di Jakarta Fashion Week 2025. Showcase 25 looks dari koleksi terbaru ZS Signature.",
+      "picId": "user-003",
+      "brandId": "brand-004",
+      "categoryId": "cat-003",
+      "status": "to-do",
+      "startDate": "2025-03-01",
+      "deadline": "2025-04-15",
+      "crossDeptNotes": "",
+      "createdAt": "2025-01-25T10:00:00Z",
+      "updatedAt": "2025-01-25T10:00:00Z",
+      "subTasks": [
+        { "id": "sub-020", "title": "Registrasi & konfirmasi slot JFW", "completed": false, "picId": "user-003", "dueDate": "2025-03-05" },
+        { "id": "sub-021", "title": "Kurasi 25 looks untuk runway", "completed": false, "picId": "user-003", "dueDate": "2025-03-15" },
+        { "id": "sub-022", "title": "Casting model (15 orang)", "completed": false, "picId": "user-003", "dueDate": "2025-03-20" },
+        { "id": "sub-023", "title": "Fitting session dengan model", "completed": false, "picId": "user-003", "dueDate": "2025-03-25" },
+        { "id": "sub-024", "title": "Koordinasi MUA & hair stylist", "completed": false, "picId": "user-003", "dueDate": "2025-03-28" },
+        { "id": "sub-025", "title": "Rehearsal di venue", "completed": false, "picId": "user-003", "dueDate": "2025-04-10" },
+        { "id": "sub-026", "title": "Show day", "completed": false, "picId": "user-003", "dueDate": "2025-04-15" }
+      ]
+    },
+    {
+      "id": "task-004",
+      "title": "Katalog Digital ZS Active Q1",
+      "description": "Pembuatan katalog digital untuk koleksi activewear. Format: PDF interaktif & web version.",
+      "picId": "user-001",
+      "brandId": "brand-003",
+      "categoryId": "cat-005",
+      "status": "approved",
+      "startDate": "2024-12-01",
+      "deadline": "2025-01-15",
+      "crossDeptNotes": "Koordinasi dengan tim e-commerce untuk link produk di katalog.",
+      "createdAt": "2024-11-28T08:30:00Z",
+      "updatedAt": "2025-01-16T11:00:00Z",
+      "subTasks": [
+        { "id": "sub-027", "title": "Layout design & template", "completed": true, "picId": "user-001", "dueDate": "2024-12-10" },
+        { "id": "sub-028", "title": "Copywriting produk", "completed": true, "picId": "user-003", "dueDate": "2024-12-15" },
+        { "id": "sub-029", "title": "Photo selection & retouching", "completed": true, "picId": "user-001", "dueDate": "2024-12-20" },
+        { "id": "sub-030", "title": "Compile katalog PDF", "completed": true, "picId": "user-001", "dueDate": "2025-01-05" },
+        { "id": "sub-031", "title": "Web version development", "completed": true, "picId": "user-002", "dueDate": "2025-01-10" },
+        { "id": "sub-032", "title": "QC & final review", "completed": true, "picId": "user-001", "dueDate": "2025-01-15" }
+      ]
+    },
+    {
+      "id": "task-005",
+      "title": "Social Media Campaign - Valentine Edition",
+      "description": "Campaign Valentine's Day untuk semua brand. Konten: carousel posts, reels, dan Instagram stories.",
+      "picId": "user-003",
+      "brandId": "brand-001",
+      "categoryId": "cat-004",
+      "status": "done",
+      "startDate": "2025-01-20",
+      "deadline": "2025-02-10",
+      "crossDeptNotes": "Tim digital handle posting, marketing handle konten.",
+      "createdAt": "2025-01-18T13:00:00Z",
+      "updatedAt": "2025-02-08T17:30:00Z",
+      "subTasks": [
+        { "id": "sub-033", "title": "Content planning & calendar", "completed": true, "picId": "user-003", "dueDate": "2025-01-22" },
+        { "id": "sub-034", "title": "Photoshoot produk dengan props Valentine", "completed": true, "picId": "user-001", "dueDate": "2025-01-28" },
+        { "id": "sub-035", "title": "Design carousel posts (5 sets)", "completed": true, "picId": "user-003", "dueDate": "2025-02-01" },
+        { "id": "sub-036", "title": "Record & edit reels (3 videos)", "completed": true, "picId": "user-002", "dueDate": "2025-02-05" },
+        { "id": "sub-037", "title": "Create Instagram stories templates", "completed": true, "picId": "user-003", "dueDate": "2025-02-07" },
+        { "id": "sub-038", "title": "Final assets handover ke tim digital", "completed": true, "picId": "user-003", "dueDate": "2025-02-10" }
+      ]
+    },
+    {
+      "id": "task-006",
+      "title": "Influencer Collaboration - Hijab Styling",
+      "description": "Kolaborasi dengan 5 hijab influencer untuk styling content. Budget: Rp 50jt.",
+      "picId": "user-002",
+      "brandId": "brand-002",
+      "categoryId": "cat-004",
+      "status": "review",
+      "startDate": "2025-01-10",
+      "deadline": "2025-02-20",
+      "crossDeptNotes": "Legal review kontrak influencer sebelum signing.",
+      "createdAt": "2025-01-08T09:15:00Z",
+      "updatedAt": "2025-02-01T10:00:00Z",
+      "subTasks": [
+        { "id": "sub-039", "title": "Influencer research & shortlist", "completed": true, "picId": "user-002", "dueDate": "2025-01-15" },
+        { "id": "sub-040", "title": "Outreach & negotiation", "completed": true, "picId": "user-002", "dueDate": "2025-01-20" },
+        { "id": "sub-041", "title": "Contract signing (5 influencers)", "completed": true, "picId": "user-002", "dueDate": "2025-01-25" },
+        { "id": "sub-042", "title": "Product gifting & briefing", "completed": true, "picId": "user-002", "dueDate": "2025-01-28" },
+        { "id": "sub-043", "title": "Content review & approval", "completed": true, "picId": "user-002", "dueDate": "2025-02-10" },
+        { "id": "sub-044", "title": "Posting coordination", "completed": true, "picId": "user-002", "dueDate": "2025-02-15" },
+        { "id": "sub-045", "title": "Performance report", "completed": true, "picId": "user-002", "dueDate": "2025-02-20" }
+      ]
+    }
+  ],
+  "taskTemplates": [
+    {
+      "id": "template-001",
+      "name": "Photo Shoot",
+      "categoryId": "cat-001",
+      "subTasks": [
+        "Konsep foto & creative direction",
+        "Mood board & referensi visual",
+        "Cari studio/lokasi",
+        "Casting model",
+        "Booking decorator & props",
+        "Booking photographer & videographer",
+        "RAB & approval budget",
+        "Crew call & rundown",
+        "Eksekusi photo shoot",
+        "Seleksi & editing foto",
+        "Final delivery"
+      ]
+    },
+    {
+      "id": "template-002",
+      "name": "Video Shoot",
+      "categoryId": "cat-002",
+      "subTasks": [
+        "Script & storyboard",
+        "Casting talent",
+        "Location scouting",
+        "Production house briefing",
+        "Shooting day(s)",
+        "Rough cut review",
+        "Final editing & color grading",
+        "Sound mixing & music licensing",
+        "Final delivery"
+      ]
+    },
+    {
+      "id": "template-003",
+      "name": "Event",
+      "categoryId": "cat-003",
+      "subTasks": [
+        "Event concept & objectives",
+        "Venue booking",
+        "Vendor coordination (catering, decor, AV)",
+        "Guest list & invitations",
+        "Run of show / rundown",
+        "Rehearsal",
+        "Event day execution",
+        "Post-event report"
+      ]
+    }
+  ]
+}
